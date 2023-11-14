@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+    Список книг в библеотеке:
+    <br/>
+    <br/>
+<div th:each="book : ${book}">
+    <a th:href="@{/book/{title}(id=${book.getTitle()})}"
+       th:text="${book.getTitle()}">book</a>
+</div>
+<br/>
+<hr/>
+
+    <form th:method="GET" th:action="@{/book/new}">
+        <input type="submit" value="Добавить новую книгу"/>
+    </form>
+    <br/>
+    <br/>
+    <form th:method="GET" th:action="@{/}">
+        <input type="submit" value="Вернуться к выбору списка"/>
+    </form>
+</body>
+</html>

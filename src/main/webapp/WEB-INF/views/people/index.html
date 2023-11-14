@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+    Список посетителей библеотеки:
+    <br/>
+    <br/>
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id_person}(id_person=${person.getId()})}"
+       th:text="${person.getFIO() + ', ' + person.getYear()}">user</a>
+</div>
+<br/>
+<hr/>
+
+    <form th:method="GET" th:action="@{/people/new}">
+        <input type="submit" value="Добавить нового человека"/>
+    </form>
+    <br/>
+    <br/>
+    <form th:method="GET" th:action="@{/}">
+        <input type="submit" value="Вернуться к выбору списка"/>
+    </form>
+</body>
+</html>
