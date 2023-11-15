@@ -1,4 +1,4 @@
-package com.my.lib.config;
+package com.my.app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -22,19 +25,20 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
+
 import java.util.Properties;
 
 
 @Configuration
-@ComponentScan("com.my.lib")
-@EnableTransactionManagement
+@ComponentScan("com.my.app")
 @EnableWebMvc
-@EnableJpaRepositories("com.my.lib.repositories")
+@EnableTransactionManagement
 @PropertySource("classpath:/hibernate.properties")
+@EnableJpaRepositories("com.my.app.repositories")
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
-    private final Environment environment;
+    private final Environment environment;//Для использовани конфигураций hibernate
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext, Environment environment) {
@@ -92,7 +96,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.my.lib.model");
+        em.setPackagesToScan("com.my.app.model");
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

@@ -1,17 +1,16 @@
-package com.my.lib.model;
+package com.my.app.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 @Entity
 @Table(name="book")
 public class Book {
     @Id
-    @NotEmpty(message = "Name should not be empty")
-    @Column(name = "title")
-    private String title;
+    @Column(name = "id")
+    private int id;
+
     @NotEmpty(message = "Name should not be empty")
     @Column(name = "author")
     private String author;
@@ -19,8 +18,9 @@ public class Book {
     @Min(value = 0, message = "Age should be greater than 0")
     @Column(name = "year")
     private int year;
-    @Column(name = "id")
-    private int id;
+    @NotEmpty(message = "Name should not be empty")
+    @Column(name = "title")
+    private String title;
     @ManyToOne
     @JoinColumn(name = "person_id",referencedColumnName = "id")
     private Person owner;

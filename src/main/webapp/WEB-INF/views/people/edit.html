@@ -11,13 +11,13 @@
     <input type="text" th:field="*{FIO}" id="FIO"/>
     <div style="color:red" th:if="${#fields.hasErrors('FIO')}" th:errors="*{FIO}">FIO Error</div>
     <br/>
-    <label for="year">Введите год: </label>
+    <label for="year">Ввелите год рождения: </label>
     <input type="text" th:field="*{year}" id="year"/>
-    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</div>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year Error</div>
     <br/>
 
     <br/>
-    <input type="submit" value="Обновить"/>
+    <input type="submit" value="Update!"/>
 </form>
 
 </body>

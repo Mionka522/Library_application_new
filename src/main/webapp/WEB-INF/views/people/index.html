@@ -5,23 +5,20 @@
     <title>Index</title>
 </head>
 <body>
-    Список посетителей библеотеки:
-    <br/>
-    <br/>
+
 <div th:each="person : ${people}">
-    <a th:href="@{/people/{id_person}(id_person=${person.getId()})}"
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
        th:text="${person.getFIO() + ', ' + person.getYear()}">user</a>
 </div>
+
 <br/>
 <hr/>
 
-    <form th:method="GET" th:action="@{/people/new}">
-        <input type="submit" value="Добавить нового человека"/>
-    </form>
-    <br/>
-    <br/>
-    <form th:method="GET" th:action="@{/}">
-        <input type="submit" value="Вернуться к выбору списка"/>
-    </form>
+<a href="/people/new">Добавить нового человека</a>
+<br/>
+<br/>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="Вернуться к выбору списка"/>
+</form>
 </body>
 </html>

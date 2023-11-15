@@ -1,15 +1,14 @@
-package com.my.lib.services;
+package com.my.app.services;
 
-import com.my.lib.model.Book;
-import com.my.lib.model.Person;
-import com.my.lib.repositories.PeopleRepository;
+import com.my.app.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.my.app.model.Person;
+import com.my.app.repositories.PeopleRepository;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 @Transactional(readOnly = true)
 public class PeopleService {
@@ -45,15 +44,7 @@ public class PeopleService {
     public void delete(int id) {
         peopleRepository.deleteById(id);
     }
-
-    @Transactional
-    public List <Book> getBookByPersonID(int id){
-        return peopleRepository.findBookById(id);
-    }
-    @Transactional
-    public Optional<Person> getFIOval(String FIO) {
+    public Optional<Person> findByFIO(String FIO) {
         return peopleRepository.findByFIO(FIO);
-
     }
-
 }

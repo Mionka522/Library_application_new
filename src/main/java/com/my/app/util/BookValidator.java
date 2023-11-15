@@ -1,8 +1,8 @@
-package com.my.lib.util;
+package com.my.app.util;
 
-import com.my.lib.model.Book;
-import com.my.lib.services.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.my.app.services.BookService;
+
+import com.my.app.model.Book;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -12,10 +12,10 @@ public class BookValidator implements Validator {
 
     private final BookService bookService;
 
-    @Autowired
     public BookValidator(BookService bookService) {
         this.bookService = bookService;
     }
+
 
     @Override
     //На каких объектах какого класса будем использовать этот валидатор ( одна сущность для валидатора)
@@ -26,7 +26,7 @@ public class BookValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Book book = (Book) target;
-        //Посмотреть, есть книга с таким названием уже в списке
+        //Посмотреть, есть ли уже книга с таким названием
         if(bookService.getTitleVal(book.getTitle()).isPresent()) {
             errors.rejectValue("title","","Такая книга уже есть");
         }

@@ -1,12 +1,6 @@
-package com.my.lib.model;
-
+package com.my.app.model;
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.List;
-
+import javax.validation.constraints.*;
 @Entity
 @Table(name="person")
 public class Person {
@@ -14,23 +8,21 @@ public class Person {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotEmpty(message = "Поле не должно быть пустое")
-    @Size(min = 2, max = 30, message = "ФИО не может быть меньше 2 и более 30 символов")
+
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     @Column(name = "FIO")
     private String FIO;
 
     @Min(value = 0, message = "Age should be greater than 0")
     @Column(name = "year")
     private int year;
-@OneToMany
-private List<Book> books;
 
     public Person() {
 
     }
 
-    public Person(int id, String FIO, int year) {
-        this.id = id;
+    public Person(String FIO, int year) {
         this.FIO = FIO;
         this.year = year;
     }
@@ -55,15 +47,16 @@ private List<Book> books;
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYear(int age) {
+        this.year = age;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + FIO + '\'' +
+                ", age=" + year +
+                '}';
     }
 }

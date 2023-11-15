@@ -1,8 +1,8 @@
-package com.my.lib.util;
+package com.my.app.util;
 
-import com.my.lib.model.Person;
-import com.my.lib.services.PeopleService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.my.app.model.Person;
+import com.my.app.services.PeopleService;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -11,10 +11,10 @@ import org.springframework.validation.Validator;
 public class PersonValidator implements Validator {
     private final PeopleService peopleService;
 
-    @Autowired
-    public PersonValidator( PeopleService peopleService) {
+    public PersonValidator(PeopleService peopleService) {
         this.peopleService = peopleService;
     }
+
 
     @Override
     //На каких объектах какого класса будем использовать этот валидатор ( одна сущность для валидатора)
@@ -25,8 +25,8 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        //Посмотреть, есть ли человек с таким же емайлом
-        if(peopleService.getFIOval(person.getFIO()).isPresent()) {
+        //Посмотреть, есть ли уже человек с таким ФИО
+        if(peopleService.findByFIO(person.getFIO()).isPresent()) {
             errors.rejectValue("FIO","","Такой человек уже есть");
         }
     }

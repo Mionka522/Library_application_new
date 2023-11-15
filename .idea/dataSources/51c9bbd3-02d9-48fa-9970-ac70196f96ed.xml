@@ -1402,8 +1402,8 @@
     </schema>
     <schema id="511" parent="1" name="library">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-11-13.16:37:37</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-11-13.08:37:37</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-11-15.15:31:59</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-15.07:31:59</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="512" parent="1" name="mysql">
@@ -1455,13 +1455,13 @@
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
     <column id="528" parent="526" name="id">
-      <AutoIncrement>10</AutoIncrement>
+      <AutoIncrement>4</AutoIncrement>
       <DasType>mediumint(8) unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="529" parent="526" name="title">
-      <DasType>varchar(200)|0s</DasType>
+      <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
@@ -1478,7 +1478,7 @@
       <DasType>smallint(5) unsigned|0s</DasType>
       <Position>5</Position>
     </column>
-    <foreign-key id="533" parent="526" name="fk_book_person">
+    <foreign-key id="533" parent="526" name="fk_person_id">
       <ColNames>person_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
@@ -1489,54 +1489,62 @@
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="535" parent="526" name="title">
+    <index id="535" parent="526" name="book_pk">
       <ColNames>title</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="536" parent="526" name="fk_book_person">
+    <index id="536" parent="526" name="title">
+      <ColNames>title</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="537" parent="526" name="fk_person_id">
       <ColNames>person_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="537" parent="526" name="PRIMARY">
+    <key id="538" parent="526" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="538" parent="526" name="title">
+    <key id="539" parent="526" name="book_pk">
+      <UnderlyingIndexName>book_pk</UnderlyingIndexName>
+    </key>
+    <key id="540" parent="526" name="title">
       <UnderlyingIndexName>title</UnderlyingIndexName>
     </key>
-    <column id="539" parent="527" name="id">
-      <AutoIncrement>10</AutoIncrement>
+    <column id="541" parent="527" name="id">
+      <AutoIncrement>11</AutoIncrement>
       <DasType>smallint(5) unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="540" parent="527" name="FIO">
+    <column id="542" parent="527" name="FIO">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="541" parent="527" name="year">
+    <column id="543" parent="527" name="year">
       <DasType>int(5)|0s</DasType>
       <Position>3</Position>
     </column>
-    <index id="542" parent="527" name="PRIMARY">
+    <index id="544" parent="527" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="543" parent="527" name="person_pk">
+    <index id="545" parent="527" name="person_pk">
       <ColNames>FIO</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="544" parent="527" name="PRIMARY">
+    <key id="546" parent="527" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="545" parent="527" name="person_pk">
+    <key id="547" parent="527" name="person_pk">
       <UnderlyingIndexName>person_pk</UnderlyingIndexName>
     </key>
   </database-model>
